@@ -3,4 +3,10 @@
 {% block content %}
 <h1>{{ article.name }}</h1>
 <div>{{ article.body }}</div>
+<a href="{% url 'article_update' id=article.id %}">редактировать статью</a>
+<form action="{% url 'article_delete' article.id %}" method="post" onsubmit="return confirm('Вы уверены?');">
+    {% csrf_token %}
+    <input type="submit" value="Удалить">
+</form>
+
 {% endblock %}
